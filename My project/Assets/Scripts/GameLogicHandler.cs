@@ -1,8 +1,8 @@
 using TMPro;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class GameLogicHandler : MonoBehaviour
@@ -159,6 +159,20 @@ public class GameLogicHandler : MonoBehaviour
                 cards[value].SpriteID = selectedID[i];
             }
 
+    }
+    private void CheckGameWin()
+    {
+        panel_congratulations.SetActive(true);
+        if (cardLeft == 0)
+        {
+            EndGame();
+        }
+    }
+   
+    private void EndGame()
+    {
+        gameStart = false;
+        canvasGamePlay.enabled = false;
     }
     #endregion
 
