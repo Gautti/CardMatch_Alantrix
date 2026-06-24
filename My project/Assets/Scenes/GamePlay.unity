@@ -2540,13 +2540,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 1109223834}
   m_HandleRect: {fileID: 1656290652}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 2
+  m_MaxValue: 16
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1669764871}
+        m_TargetAssemblyTypeName: GameLogicHandler, Assembly-CSharp
+        m_MethodName: SetGameSize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1408733695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2839,7 +2851,7 @@ MonoBehaviour:
   gameSize: 2
   prefab: {fileID: 6228522102259608883, guid: 2b611dd51413d9b40a53db82f358157e, type: 3}
   cardList: {fileID: 1385090475}
-  CardBack: {fileID: -7924313676886007637, guid: 36cd5d1682463b345a6faa3e36a796f0, type: 3}
+  cardBack: {fileID: -7924313676886007637, guid: 36cd5d1682463b345a6faa3e36a796f0, type: 3}
   sprite_Cards:
   - {fileID: -6276390541757865910, guid: 5572d3e5ad4a94b4abab998574abc5c9, type: 3}
   - {fileID: -927097501176452272, guid: cb1de1177c3c0be4e919b940a77b7e6a, type: 3}
@@ -2857,15 +2869,16 @@ MonoBehaviour:
   - {fileID: 2822962250050549408, guid: 09d9b6bdad8751a438c15cc63c7a2f09, type: 3}
   - {fileID: -8636221404721523813, guid: 710106e0067615e4baf96a24d6bbc82a, type: 3}
   - {fileID: -429890163646538327, guid: 91b48e2d436eccc46b40b65c6546cd83, type: 3}
-  panel: {fileID: 151094501}
-  info: {fileID: 0}
-  panel_Score: {fileID: 0}
-  panel_Timer: {fileID: 0}
-  txt_Score: {fileID: 0}
-  txt_SizeLabel: {fileID: 0}
-  slider_GameSize: {fileID: 0}
-  txt_timeLabel: {fileID: 0}
-  canvasGamePlay: {fileID: 0}
+  panel_Gameplay: {fileID: 151094501}
+  panel_congratulations: {fileID: 1368995}
+  panel_Score: {fileID: 1686875106}
+  panel_Timer: {fileID: 1132928842}
+  spritePreload: {fileID: 0}
+  txt_Score: {fileID: 1834717648}
+  txt_SizeLabel: {fileID: 488349969}
+  slider_GameSize: {fileID: 1398871544}
+  txt_timeLabel: {fileID: 1879005261}
+  canvasGamePlay: {fileID: 1742319284}
 --- !u!1 &1686875106
 GameObject:
   m_ObjectHideFlags: 0
@@ -2961,7 +2974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1742319282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3735,7 +3748,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2111533042}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1669764871}
+        m_TargetAssemblyTypeName: GameLogicHandler, Assembly-CSharp
+        m_MethodName: StartCardGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1742319281}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &2111533042
 MonoBehaviour:
   m_ObjectHideFlags: 0

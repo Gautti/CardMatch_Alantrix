@@ -40,6 +40,10 @@ public class GameLogicHandler : MonoBehaviour
     #endregion
 
     #region UNITY_METHODS
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         gameStart = false;
