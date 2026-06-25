@@ -30,6 +30,7 @@ public class GameLogicHandler : MonoBehaviour
     [SerializeField] private Slider slider_GameSize;
     [SerializeField] private TMP_Text txt_timeLabel;
     [SerializeField] private Canvas canvasGamePlay;
+    [SerializeField] private GameObject obj_GiveUpCanvas;
     private float time = 0f;
     private int score = 0;
     private int spriteSelected;
@@ -217,7 +218,16 @@ public class GameLogicHandler : MonoBehaviour
     {
         return cardBack;
     }
-
+    public void GiveUpButtonCLicked()
+    {
+        if (!gameStart)
+            return;
+        obj_GiveUpCanvas.SetActive(true);
+    }
+    public void GiveUp()
+    {
+        EndGame();
+    }
 
     public bool canClick()
     {
