@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Android;
 
 
 public class GameLogicHandler : MonoBehaviour
@@ -263,6 +264,13 @@ public class GameLogicHandler : MonoBehaviour
             }
             cardSelected = spriteSelected = -1;
         }
+    }
+    public void SaveGame()
+    {
+        if (!gameStart)
+            return;
+        
+    
     }
     #endregion
 }
