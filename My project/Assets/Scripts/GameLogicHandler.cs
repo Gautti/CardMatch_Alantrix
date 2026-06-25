@@ -48,6 +48,14 @@ public class GameLogicHandler : MonoBehaviour
     {
         gameStart = false;
     }
+    private void Update()
+    {
+        if (gameStart)
+        {
+            time += Time.deltaTime;
+            txt_timeLabel.text = "Time: " + (int)time + "s";
+        }
+    }
 
     #endregion
 
