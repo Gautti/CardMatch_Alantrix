@@ -2,8 +2,8 @@ using TMPro;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using UnityEngine.Android;
+using System.Linq;
+
 
 
 public class GameLogicHandler : MonoBehaviour
@@ -172,18 +172,22 @@ public class GameLogicHandler : MonoBehaviour
     }
     private void CheckGameWin()
     {
-        
+
         if (cardLeft == 0)
         {
             panel_congratulations.SetActive(true);
             EndGame();
         }
     }
-   
+
     private void EndGame()
     {
         gameStart = false;
         canvasGamePlay.enabled = false;
+    }
+    private void OnApplicationQuit()
+    {
+        SaveGame();
     }
     #endregion
 
@@ -265,12 +269,70 @@ public class GameLogicHandler : MonoBehaviour
             cardSelected = spriteSelected = -1;
         }
     }
+
+
     public void SaveGame()
     {
         if (!gameStart)
             return;
-        
-    
+        GameState gameState = new GameState
+        {
+            score = score,
+            time = time,
+            cardIDs = cards.Select(c => c.ID).ToArray(),
+            cardSpriteIDs = cards.Select(c => c.SpriteID).ToArray(),
+            cardFlippedStates = cards.Select(c => c.IsFlipped).ToArray(),
+            cardPositions = cards.Select(c => c.transform.localPosition).ToArray(),
+            cardColors = cards.Select(c => c.GetComponent<Image>().color).ToArray(),
+            cardScales = cards.Select(c => c.transform.localScale).ToArray()
+        };
+        GameStateManager.SaveGame(gameState);
+
+    }
+
+    public void LoadGame()
+    {
+        /*int isOdd = gameSize % 2;
+        cards = new Card[gameSize * gameSize - isOdd];*/
+        GameState gameState = GameStateManager.LoadGame();
+        if (gameState == null)
+            return;
+        score = gameState.score;
+        time = gameState.time;
+        txt_Score.text = score.ToString();
+        cardSelected = spriteSelected = -1;
+        cardLeft = gameState.cardIDs.Length;
+        cards = new Card[cardLeft];
+        foreach (Transform child in cardList.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        canvasGamePlay.enabled = true;
+        panel_congratulations.SetActive(false);
+
+        for (int i = 0; i < gameState.cardIDs.Length; i++)
+        {
+            GameObject cardObj = Instantiate(prefab, cardList.transform);
+            Card card = cardObj.GetComponent<Card>();
+            card.ID = gameState.cardIDs[i];
+            card.SpriteID = gameState.cardSpriteIDs[i];
+            cardObj.transform.localPosition = gameState.cardPositions[i];
+            cardObj.transform.localScale = gameState.cardScales[i];
+            card.GetComponent<Image>().color = gameState.cardColors[i];
+            card.gameObject.SetActive(true);
+
+            if (gameState.cardColors[i] == Color.clear)
+            {
+                cardObj.GetComponent<Image>().color = Color.clear;
+            }
+            else
+            {
+                card.Flip();
+            }
+            cards[i] = card;
+        }
+
+        gameStart = true;
     }
     #endregion
 }
