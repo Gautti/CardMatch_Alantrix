@@ -257,6 +257,7 @@ public class GameLogicHandler : MonoBehaviour
                 cards[cardId].Inactive();
                 score++;
                 txt_Score.text = score.ToString();
+                AudioManager.instance.PlayAudio(2);
                 cardLeft -= 2;
                 CheckGameWin();
             }
@@ -265,6 +266,7 @@ public class GameLogicHandler : MonoBehaviour
 
                 cards[cardSelected].Flip();
                 cards[cardId].Flip();
+                AudioManager.instance.PlayAudio(1);
             }
             cardSelected = spriteSelected = -1;
         }

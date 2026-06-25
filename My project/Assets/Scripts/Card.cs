@@ -110,6 +110,7 @@ public class Card : MonoBehaviour
         if (!GameLogicHandler.instance.canClick()) return;
         Flip();
         StartCoroutine(SelectionEvent());
+        AudioManager.instance.PlayAudio(0);
     }
     private IEnumerator SelectionEvent()
     {
