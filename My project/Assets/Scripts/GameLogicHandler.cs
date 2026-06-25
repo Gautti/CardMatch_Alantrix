@@ -310,6 +310,8 @@ public class GameLogicHandler : MonoBehaviour
             Destroy(child.gameObject);
         }
         canvasGamePlay.enabled = true;
+        panel_Timer.SetActive(true);
+        panel_Score.SetActive(true);
         panel_congratulations.SetActive(false);
 
         for (int i = 0; i < gameState.cardIDs.Length; i++)
@@ -326,10 +328,11 @@ public class GameLogicHandler : MonoBehaviour
             if (gameState.cardColors[i] == Color.clear)
             {
                 cardObj.GetComponent<Image>().color = Color.clear;
+                card.IsFlipped = true;
             }
             else
             {
-                card.Flip();
+                card.RestoreAsUnflipped();
             }
             cards[i] = card;
         }

@@ -112,6 +112,13 @@ public class Card : MonoBehaviour
         StartCoroutine(SelectionEvent());
         AudioManager.instance.PlayAudio(0);
     }
+    public void RestoreAsUnflipped()
+    {
+        flipped = false;
+        turning = false;
+        transform.rotation = Quaternion.Euler(Vector3.zero); // face-down rotation
+        ChangeSprite(); // will show card back since flipped = false
+    }
     private IEnumerator SelectionEvent()
     {
         yield return new WaitForSeconds(0.5f);
