@@ -170,9 +170,10 @@ public class GameLogicHandler : MonoBehaviour
     }
     private void CheckGameWin()
     {
-        panel_congratulations.SetActive(true);
+        
         if (cardLeft == 0)
         {
+            panel_congratulations.SetActive(true);
             EndGame();
         }
     }
@@ -242,7 +243,7 @@ public class GameLogicHandler : MonoBehaviour
                 score++;
                 txt_Score.text = score.ToString();
                 cardLeft -= 2;
-               
+                CheckGameWin();
             }
             else
             {
